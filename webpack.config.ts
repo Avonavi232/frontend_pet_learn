@@ -11,6 +11,7 @@ export default (env: BuildEnv) => {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     dist: path.resolve(__dirname, 'dist'),
     html: path.resolve(__dirname, 'public', 'index.html'),
+    locales: path.resolve(__dirname, 'public', 'locales'),
   }
 
   const mode: BuildMode = env.mode || 'development';

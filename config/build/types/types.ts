@@ -4,6 +4,7 @@ export type BuildPaths = {
   entry: string;
   dist: string;
   html: string;
+  locales: string;
   src: string;
 }
 

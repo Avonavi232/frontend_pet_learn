@@ -5,8 +5,8 @@ import { ThemeProvider, Router } from '../providers';
 import { ThemeConsumer } from 'shared/config/theme';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import styles from '../styles/styles.sass';
 import { PageLayout } from 'shared/ui/PageLayout';
+import styles from '../styles/styles.sass';
 
 
 export const App: React.FC = () => {
