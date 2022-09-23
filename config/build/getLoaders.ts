@@ -1,5 +1,7 @@
 import { RuleSetRule } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ReactRefreshTypeScript from 'react-refresh-typescript'
+
 import { BuildOptions } from './types';
 
 export function getLoaders({ isDev }: BuildOptions): RuleSetRule[] {
@@ -27,8 +29,17 @@ export function getLoaders({ isDev }: BuildOptions): RuleSetRule[] {
 
   const tsLoader: RuleSetRule = {
     test: /\.tsx?$/,
-    use: 'ts-loader',
     exclude: /node_modules/,
+    use: [
+      {
+        loader: require.resolve('ts-loader'),
+        options: {
+          getCustomTransformers: () => ({
+            before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+          }),
+        },
+      },
+    ],
   };
 
   const stylesLoader: RuleSetRule = {

@@ -22,7 +22,8 @@ export default (env: BuildEnv) => {
     mode,
     paths,
     isDev,
-    port
+    port,
+    hot: true,
   });
 
   return config

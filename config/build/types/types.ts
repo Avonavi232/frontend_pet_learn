@@ -18,6 +18,7 @@ export type BuildOptions = {
   paths: BuildPaths;
   isDev: boolean;
   port: number;
+  hot: boolean;
 }
 
 
