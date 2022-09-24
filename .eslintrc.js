@@ -8,6 +8,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'airbnb',
     'plugin:react/jsx-runtime',
+    'plugin:i18next/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -16,6 +17,7 @@ module.exports = {
   },
   plugins: [
     'react',
+    'i18next',
   ],
   rules: {
     'react/jsx-filename-extension': [
