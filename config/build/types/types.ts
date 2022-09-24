@@ -20,5 +20,3 @@ export type BuildOptions = {
   port: number;
   hot: boolean;
 }
-
-

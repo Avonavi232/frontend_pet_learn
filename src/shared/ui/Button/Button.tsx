@@ -1,18 +1,20 @@
 import cn from 'classnames';
 
+import { ButtonHTMLAttributes, FC } from 'react';
 import styles from './styles.sass';
 
 export enum EButtonTheme {
   Clean = 'clean',
 }
 
-interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   theme?: EButtonTheme
 }
 
-export const Button: React.FC<IButtonProps> = ({ className, theme = EButtonTheme.Clean, ...rest }) => {
-  return (
-    <button {...rest} className={cn(className, styles['container'], styles[theme])}/>
-  );
+export const Button: FC<IButtonProps> = (props) => {
+  const { className, theme = EButtonTheme.Clean, ...rest } = props;
+
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <button type="button" {...rest} className={cn(className, styles.container, styles[theme])} />;
 };

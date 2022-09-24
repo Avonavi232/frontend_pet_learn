@@ -4,7 +4,6 @@ import path from 'path';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildMode, BuildPaths } from './config/build/types';
 
-
 export default (env: BuildEnv) => {
   const paths: BuildPaths = {
     src: path.resolve(__dirname, 'src'),
@@ -12,7 +11,7 @@ export default (env: BuildEnv) => {
     dist: path.resolve(__dirname, 'dist'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     locales: path.resolve(__dirname, 'public', 'locales'),
-  }
+  };
 
   const mode: BuildMode = env.mode || 'development';
   const isDev = mode === 'development';
@@ -26,5 +25,5 @@ export default (env: BuildEnv) => {
     hot: true,
   });
 
-  return config
+  return config;
 };

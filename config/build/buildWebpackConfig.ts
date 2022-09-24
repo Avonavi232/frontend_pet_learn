@@ -16,10 +16,10 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
     output: {
       filename: '[name].[contenthash].js',
       path: paths.dist,
-      clean: true
+      clean: true,
     },
     module: {
-      rules: getLoaders(options)
+      rules: getLoaders(options),
     },
     plugins: getPlugins(options),
     devServer: isDev ? getWebpackDevServer(options) : undefined,

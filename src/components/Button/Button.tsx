@@ -5,8 +5,6 @@ interface IButtonProps {
   children: string
 }
 
-export const Button: FC<IButtonProps> = memo(props => {
-  return (
-    <button onClick={props.onClick}>inc</button>
-  );
-});
+export const Button: FC<IButtonProps> = memo((props) => (
+  <button type="button" onClick={props.onClick}>inc</button>
+));

@@ -1,22 +1,21 @@
-import { Suspense } from 'react';
+import { FC, ReactElement, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { routeConfig } from 'app/providers';
 
 interface IRouterProps {
-  fallback?: React.ReactElement
+  fallback?: ReactElement
 }
 
-export const Router: React.FC<IRouterProps> = ({ fallback }) => {
-  return (
-    <Suspense fallback={fallback}>
-      <Routes>
-        {Object.values(routeConfig).map(props => <Route key={props.path} {...props}/>)}
-      </Routes>
-    </Suspense>
-  );
-};
+export const Router: FC<IRouterProps> = ({ fallback }) => (
+  <Suspense fallback={fallback}>
+    <Routes>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      {Object.values(routeConfig).map((props) => <Route key={props.path} {...props} />)}
+    </Routes>
+  </Suspense>
+);
 
 Router.defaultProps = {
-  fallback: <div>loading</div>
-}
+  fallback: <div>loading</div>,
+};

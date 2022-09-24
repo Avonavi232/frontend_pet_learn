@@ -1,6 +1,6 @@
 import { RuleSetRule } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import ReactRefreshTypeScript from 'react-refresh-typescript'
+import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 import { BuildOptions } from './types';
 
@@ -25,7 +25,7 @@ export function getLoaders({ isDev }: BuildOptions): RuleSetRule[] {
         },
       },
     ],
-  }
+  };
 
   const tsLoader: RuleSetRule = {
     test: /\.tsx?$/,
@@ -42,6 +42,25 @@ export function getLoaders({ isDev }: BuildOptions): RuleSetRule[] {
     ],
   };
 
+  const babelLoader: RuleSetRule = {
+    test: /\.tsx?$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: [],
+        plugins: [
+          ['i18next-extract', {
+            nsSeparator: '~',
+            locales: ['ru', 'en'],
+            keyAsDefaultValue: true,
+            outputPath: 'public/locales/{{locale}}/{{ns}}.json',
+          }],
+        ],
+      },
+    },
+  };
+
   const stylesLoader: RuleSetRule = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -52,14 +71,15 @@ export function getLoaders({ isDev }: BuildOptions): RuleSetRule[] {
           modules: {
             auto: (resourcePath: string) => !resourcePath.includes('.global.'),
             localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:5]',
-          }
-        }
+          },
+        },
       },
-      "sass-loader",
+      'sass-loader',
     ],
   };
 
   return [
+    babelLoader,
     tsLoader,
     stylesLoader,
     svgLoader,

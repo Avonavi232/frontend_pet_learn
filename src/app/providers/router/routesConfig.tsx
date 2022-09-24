@@ -1,4 +1,4 @@
-import { PathRouteProps } from 'react-router';
+import { PathRouteProps } from 'react-router-dom';
 import { MainPageLazy } from 'pages/mainPage';
 import { AboutPageLazy } from 'pages/aboutPage';
 
@@ -10,10 +10,10 @@ export enum EAppRoutes {
 export const routeConfig: Record<EAppRoutes, PathRouteProps> = {
   [EAppRoutes.Main]: {
     path: EAppRoutes.Main,
-    element: <MainPageLazy />
+    element: <MainPageLazy />,
   },
   [EAppRoutes.About]: {
     path: EAppRoutes.About,
-    element: <AboutPageLazy />
-  }
-}
+    element: <AboutPageLazy />,
+  },
+};
