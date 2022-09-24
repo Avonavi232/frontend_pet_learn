@@ -1,19 +1,25 @@
 import { PathRouteProps } from 'react-router-dom';
 import { MainPageLazy } from 'pages/mainPage';
 import { AboutPageLazy } from 'pages/aboutPage';
+import { NotFoundPage } from 'pages/notFoundPage';
 
 export enum EAppRoutes {
   Main = '/',
   About = '/about',
+  NotFound = '*'
 }
 
-export const routeConfig: Record<EAppRoutes, PathRouteProps> = {
-  [EAppRoutes.Main]: {
+export const routeConfig: PathRouteProps[] = [
+  {
     path: EAppRoutes.Main,
     element: <MainPageLazy />,
   },
-  [EAppRoutes.About]: {
+  {
     path: EAppRoutes.About,
     element: <AboutPageLazy />,
   },
-};
+  {
+    path: EAppRoutes.NotFound,
+    element: <NotFoundPage />,
+  },
+];

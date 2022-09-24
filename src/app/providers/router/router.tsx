@@ -1,6 +1,7 @@
 import { FC, ReactElement, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { PageLoader } from 'widgets/pageLoader';
 import { routeConfig } from './routesConfig';
 
 interface IRouterProps {
@@ -11,11 +12,11 @@ export const Router: FC<IRouterProps> = ({ fallback }) => (
   <Suspense fallback={fallback}>
     <Routes>
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      {Object.values(routeConfig).map((props) => <Route key={props.path} {...props} />)}
+      {routeConfig.map((props) => <Route key={props.path} {...props} />)}
     </Routes>
   </Suspense>
 );
 
 Router.defaultProps = {
-  fallback: <div>loading</div>,
+  fallback: <PageLoader />,
 };
