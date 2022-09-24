@@ -1,2 +1,2 @@
 export { ThemeProvider } from './theme/ThemeProvider';
-export { Router, routeConfig } from './router';
+export { Router } from './router';

@@ -1,7 +1,7 @@
 import { FC, ReactElement, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { routeConfig } from 'app/providers';
+import { routeConfig } from './routesConfig';
 
 interface IRouterProps {
   fallback?: ReactElement
