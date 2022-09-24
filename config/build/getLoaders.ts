@@ -45,20 +45,7 @@ export function getLoaders({ isDev }: BuildOptions): RuleSetRule[] {
   const babelLoader: RuleSetRule = {
     test: /\.tsx?$/,
     exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: [],
-        plugins: [
-          ['i18next-extract', {
-            nsSeparator: '~',
-            locales: ['ru', 'en'],
-            keyAsDefaultValue: true,
-            outputPath: 'public/locales/{{locale}}/{{ns}}.json',
-          }],
-        ],
-      },
-    },
+    loader: 'babel-loader',
   };
 
   const stylesLoader: RuleSetRule = {
