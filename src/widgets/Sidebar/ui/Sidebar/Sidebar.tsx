@@ -15,6 +15,7 @@ export const Sidebar: FC<ISidebarProps> = ({ className }) => {
 
   return (
     <div className={cn(className, styles.container, { [styles.open]: isOpen })}>
+      {/* eslint-disable-next-line i18next/no-literal-string */}
       <button type="button" onClick={onToggle}>toggle</button>
       <LangSwitcher />
     </div>

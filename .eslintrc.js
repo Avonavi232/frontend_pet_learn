@@ -32,6 +32,7 @@ module.exports = {
       devDependencies: true,
     }],
     'max-len': [2, {
+      code: 100,
       ignoreComments: true,
     }],
     '@typescript-eslint/no-shadow': 'error',

@@ -18,7 +18,6 @@ module.exports = (api) => {
       [
         'i18next-extract',
         {
-          nsSeparator: '~',
           locales: [
             'ru',
             'en',
