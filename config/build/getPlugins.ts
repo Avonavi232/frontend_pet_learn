@@ -3,10 +3,13 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack, { WebpackPluginInstance } from 'webpack';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { BuildOptions } from './types';
 
 export function getPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstance[] {
+  const isAnalyze = Boolean(process.env.analyze);
+
   return [
     new HTMLWebpackPlugin({
       template: paths.html,
@@ -21,5 +24,6 @@ export function getPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstanc
     }),
     isDev && new ReactRefreshPlugin(),
     new ForkTsCheckerWebpackPlugin(),
+    isAnalyze && new BundleAnalyzerPlugin(),
   ].filter(Boolean) as WebpackPluginInstance[];
 }

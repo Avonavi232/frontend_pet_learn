@@ -13,6 +13,10 @@ module.exports = (api) => {
         },
       ],
       isTestEnv && '@babel/preset-typescript',
+      isTestEnv && [
+        '@babel/preset-react',
+        { runtime: 'automatic' },
+      ],
     ].filter(Boolean),
     plugins: [
       [

@@ -15,6 +15,12 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: FC<IButtonProps> = (props) => {
   const { className, theme = EButtonTheme.Clean, ...rest } = props;
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <button type="button" {...rest} className={cn(className, styles.container, styles[theme])} />;
+  return (
+    <button
+      type="button"
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      className={cn(className, styles.container, styles[theme])}
+    />
+  );
 };
