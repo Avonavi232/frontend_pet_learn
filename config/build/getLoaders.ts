@@ -4,6 +4,19 @@ import ReactRefreshTypeScript from 'react-refresh-typescript';
 import { BuildOptions } from './types';
 import { getStylesLoader } from './getStylesLoader';
 
+export const svgLoader: RuleSetRule = {
+  test: /\.svg$/,
+  use: [
+    '@svgr/webpack',
+    {
+      loader: 'url-loader',
+      options: {
+        limit: 8192,
+      },
+    },
+  ],
+};
+
 export function getLoaders(options: BuildOptions): RuleSetRule[] {
   const { isDev } = options;
 
@@ -12,19 +25,6 @@ export function getLoaders(options: BuildOptions): RuleSetRule[] {
     use: [
       {
         loader: 'file-loader',
-      },
-    ],
-  };
-
-  const svgLoader: RuleSetRule = {
-    test: /\.svg$/,
-    use: [
-      '@svgr/webpack',
-      {
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-        },
       },
     ],
   };

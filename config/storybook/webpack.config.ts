@@ -15,6 +15,12 @@ export default ({ config }: {config: Configuration}) => {
   }
 
   if (config.module?.rules) {
+    config.module.rules
+      // @ts-expect-error ok work
+      .filter((rule) => rule.test.test('.svg'))
+      // @ts-expect-error ok work
+      .forEach((rule) => { rule.exclude = /\.svg$/i; });
+
     config.module.rules = config.module.rules.concat(getLoaders(buildOptions));
   }
 
