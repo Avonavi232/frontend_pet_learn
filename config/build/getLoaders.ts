@@ -1,10 +1,12 @@
 import { RuleSetRule } from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 import { BuildOptions } from './types';
+import { getStylesLoader } from './getStylesLoader';
 
-export function getLoaders({ isDev }: BuildOptions): RuleSetRule[] {
+export function getLoaders(options: BuildOptions): RuleSetRule[] {
+  const { isDev } = options;
+
   const fileLoader: RuleSetRule = {
     test: /\.(png|jpe?g|gif)$/i,
     use: [
@@ -48,22 +50,7 @@ export function getLoaders({ isDev }: BuildOptions): RuleSetRule[] {
     loader: 'babel-loader',
   };
 
-  const stylesLoader: RuleSetRule = {
-    test: /\.s[ac]ss$/i,
-    use: [
-      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-      {
-        loader: 'css-loader',
-        options: {
-          modules: {
-            auto: (resourcePath: string) => !resourcePath.includes('.global.'),
-            localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:5]',
-          },
-        },
-      },
-      'sass-loader',
-    ],
-  };
+  const stylesLoader = getStylesLoader(options);
 
   return [
     babelLoader,

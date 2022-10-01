@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ThemeConsumer } from 'shared/config/theme';
@@ -9,7 +8,6 @@ import { FC } from 'react';
 import { ErrorBoundary } from 'shared/ui/ErrorBoundary';
 import { PageError } from 'widgets/PageError/ui';
 import { ThemeProvider, Router } from '../providers';
-import styles from '../styles/styles.sass';
 
 export const App: FC = () => (
   <BrowserRouter>
@@ -17,9 +15,7 @@ export const App: FC = () => (
       <ThemeProvider>
         <ThemeConsumer>
           {({ theme }) => (
-            <div className={cn(styles.app, theme)}>
-              <PageLayout main={<Router />} sidebar={<Sidebar />} navbar={<Navbar />} />
-            </div>
+            <PageLayout theme={theme} main={<Router />} sidebar={<Sidebar />} navbar={<Navbar />} />
           )}
         </ThemeConsumer>
       </ThemeProvider>

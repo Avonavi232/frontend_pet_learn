@@ -13,7 +13,7 @@
     "lint:css": "npx stylelint \"**/*.sass\"",
     "lint:css:fix": "npx stylelint \"**/*.sass\" --fix",
     "test": "jest --config ./config/jest/jest.config.ts",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "build-storybook": "build-storybook"
   },
   "keywords": [],
@@ -57,6 +57,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-i18next": "^6.0.0-4",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.31.8",

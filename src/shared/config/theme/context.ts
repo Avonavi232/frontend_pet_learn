@@ -2,12 +2,12 @@ import { createContext, useContext } from 'react';
 import { EThemes } from './constants';
 
 export interface IThemeContext {
-  theme?: EThemes;
+  theme: EThemes;
   toggleTheme(): void;
 }
 
 export const context = createContext<IThemeContext>({
-  theme: undefined,
+  theme: EThemes.Light,
   toggleTheme: () => null,
 });
 

@@ -4,6 +4,7 @@ import { ButtonHTMLAttributes, FC } from 'react';
 import styles from './styles.sass';
 
 export enum EButtonTheme {
+  Default = 'default',
   Clean = 'clean',
 }
 
