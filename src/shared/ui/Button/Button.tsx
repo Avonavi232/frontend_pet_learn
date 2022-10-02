@@ -5,6 +5,8 @@ import styles from './styles.sass';
 
 export enum EButtonTheme {
   Default = 'default',
+  Primary = 'primary',
+  Secondary = 'secondary',
   Clean = 'clean',
 }
 
@@ -14,14 +16,24 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button: FC<IButtonProps> = (props) => {
-  const { className, theme = EButtonTheme.Clean, ...rest } = props;
+  const {
+    className, theme = EButtonTheme.Primary, children, ...rest
+  } = props;
+
+  const _className = cn(
+    className,
+    theme === EButtonTheme.Clean ? styles.clean : styles.btn,
+    styles[theme],
+  );
 
   return (
     <button
       type="button"
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      className={cn(className, styles.container, styles[theme])}
-    />
+      className={_className}
+    >
+      <span>{children}</span>
+    </button>
   );
 };

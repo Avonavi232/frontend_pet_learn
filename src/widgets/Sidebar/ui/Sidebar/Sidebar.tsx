@@ -2,6 +2,7 @@ import cn from 'classnames';
 
 import { FC, useState } from 'react';
 import { LangSwitcher } from 'shared/ui/LangSwitcher';
+import { IconButton } from 'shared/ui/IconButton';
 import styles from './styles.sass';
 
 interface ISidebarProps {
@@ -15,8 +16,7 @@ export const Sidebar: FC<ISidebarProps> = ({ className }) => {
 
   return (
     <div className={cn(className, styles.container, { [styles.open]: isOpen })}>
-      {/* eslint-disable-next-line i18next/no-literal-string */}
-      <button type="button" onClick={onToggle}>toggle</button>
+      <IconButton onClick={onToggle} />
       <LangSwitcher />
     </div>
   );

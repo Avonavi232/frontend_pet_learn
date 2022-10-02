@@ -1,4 +1,4 @@
-import { themeDecorator } from '../../src/shared/lib/storybookDecorators';
+import { routerDecorator, themeDecorator } from '../../src/shared/lib/storybookDecorators';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -11,7 +11,7 @@ export const parameters = {
   layout: 'fullscreen',
 };
 
-export const decorators = [themeDecorator];
+export const decorators = [themeDecorator, routerDecorator];
 
 export const globalTypes = {
   theme: {

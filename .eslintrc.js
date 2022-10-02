@@ -43,6 +43,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'import/no-unresolved': 'off',
     'react/destructuring-assignment': 'off',
+    'no-underscore-dangle': 'off',
   },
   overrides: [
     {

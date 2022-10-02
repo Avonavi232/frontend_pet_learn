@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Button, EButtonTheme } from '../Button';
@@ -12,12 +11,12 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  theme: EButtonTheme.Default,
+  theme: EButtonTheme.Primary,
   children: 'hello',
 };
 
-export const Clean = Template.bind({});
-Clean.args = {
+export const Secondary = Template.bind({});
+Secondary.args = {
+  theme: EButtonTheme.Secondary,
   children: 'hello',
-  theme: EButtonTheme.Clean,
 };
