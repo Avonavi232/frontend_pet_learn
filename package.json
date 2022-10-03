@@ -15,6 +15,7 @@
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "npx loki test",
     "test:ui:ok": "npx loki approve",
+    "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "build-storybook -c ./config/storybook"
   },
@@ -73,6 +74,7 @@
     "jest-environment-jsdom": "^29.0.3",
     "jest-localstorage-mock": "^2.4.22",
     "loki": "^0.30.3",
+    "looks-same": "^8.0.1",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss-sass": "^0.5.0",
     "react-refresh": "^0.14.0",
@@ -107,16 +109,20 @@
     "stylelint-config-recommended": "^9.0.0"
   },
   "loki": {
+    "diffingEngine": "looks-same",
+    "looks-same": {
+      "tolerance": 5
+    },
     "configurations": {
       "chrome.laptop": {
-        "target": "chrome.app",
+        "target": "chrome.docker",
         "width": 1366,
         "height": 768,
         "deviceScaleFactor": 1,
         "mobile": false
       },
       "chrome.iphone7": {
-        "target": "chrome.app",
+        "target": "chrome.docker",
         "preset": "iPhone 7"
       }
     }

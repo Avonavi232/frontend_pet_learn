@@ -1,18 +1,59 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  our-pipeline:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16.x]
+    runs-on: ${{ matrix.os }}
+
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node}}
+
+      - name: install modules
+        run: npm install
+
+      - name: build production project
+        run: npm run build
+
+      - name: build storybook
+        run: npm run storybook:build
+
+        if: always()
+      - name: linting typescript
+        run: npm run lint:ts
+        continue-on-error: true
+
+      - name: linting styles
+        run: npm run lint:css
+        continue-on-error: true
+
+      - name: screenshot testing
+        run: npm run test:ui:ci
+        continue-on-error: true
+
+      - name: unit testing
+        run: npm run test:unit
+        continue-on-error: true
+
+        if: always()
+      - name: ls all
+        run: ls -la
+
+      - name: Archive loki diff
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: diff
+          path: .loki/difference

@@ -10,7 +10,7 @@ interface IThemeSwitcherProps{
 }
 
 export const ThemeSwitcher: FC<IThemeSwitcherProps> = ({ className }) => {
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   return (
     <div className={cn(className, styles.container)}>
@@ -18,6 +18,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = ({ className }) => {
         onClick={toggleTheme}
         type="button"
         className={styles.button}
+        data-testid="theme_switcher"
       >
         <Icon className={styles.icon} />
       </button>
