@@ -44,6 +44,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'react/destructuring-assignment': 'off',
     'no-underscore-dangle': 'off',
+    'react/jsx-pascal-case': 'off',
   },
   overrides: [
     {

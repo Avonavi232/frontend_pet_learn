@@ -1,8 +1,49 @@
 .container
   height: calc(100vh - var(--navbar-height))
-  background-color: var(--color-secondary-d)
+  background-color: var(--color-secondary)
   width: var(--sidebar-width-closed)
+  display: flex
+  flex-direction: column
 
 .open
   width: var(--sidebar-width)
 
+.opener
+  padding: 0
+  border: none
+  outline: none
+  background-color: transparent
+  cursor: pointer
+  width: 32px
+  height: 32px
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-bottom: 8px
+  margin-left: auto
+  margin-right: auto
+
+.container.open .opener
+  margin-right: 4px
+
+.opener_icon
+  transition: transform .1s
+  transform: rotate(180deg)
+  &.rotate
+    transform: rotate(0)
+
+.items
+  padding: 16px 14px
+  display: flex
+  flex-direction: column
+  gap: 16px
+  flex-grow: 1
+
+.bottom
+  margin-top: auto
+
+.footer
+  margin-top: auto
+  display: flex
+  flex-direction: column
+  gap: 16px
