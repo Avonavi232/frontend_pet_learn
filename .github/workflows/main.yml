@@ -14,9 +14,9 @@ jobs:
         os: [ubuntu-latest]
         node: [16.x]
     runs-on: ${{ matrix.os }}
-
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node}}
@@ -30,30 +30,25 @@ jobs:
       - name: build storybook
         run: npm run storybook:build
 
-        if: always()
       - name: linting typescript
         run: npm run lint:ts
-        continue-on-error: true
 
       - name: linting styles
         run: npm run lint:css
-        continue-on-error: true
 
       - name: screenshot testing
         run: npm run test:ui:ci
-        continue-on-error: true
+
+      - name: Preparing visual regression report
+        if: failure()
+        run: npm run visual:report
+
+      - name: Uploading artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: diff
+          path: .loki
 
       - name: unit testing
         run: npm run test:unit
-        continue-on-error: true
-
-        if: always()
-      - name: ls all
-        run: ls -la
-
-      - name: Archive loki diff
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: diff
-          path: .loki/difference
