@@ -33,7 +33,7 @@ export const Button: FC<IButtonProps> = (props) => {
       {...rest}
       className={_className}
     >
-      <div>{children}</div>
+      <div className={styles.inner}>{children}</div>
     </button>
   );
 };

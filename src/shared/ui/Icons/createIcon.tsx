@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import type { ComponentPropsWithRef, FC, SVGProps } from 'react';
+import type {
+  ComponentPropsWithRef, CSSProperties, FC, SVGProps,
+} from 'react';
 import cn from 'classnames';
 
 import { TIconSize, TColors } from 'shared/ui/theme/types';
@@ -9,6 +11,7 @@ export interface IIconProps extends ComponentPropsWithRef<'svg'> {
   className?: string;
   size?: TIconSize;
   color?: TColors
+  display?: CSSProperties['display']
 }
 
 const mapIconSize: Record<TIconSize, number> = {
@@ -34,7 +37,11 @@ const getIconColor = (color: TColors): SVGProps<SVGSVGElement> => ({
 export const createIcon = (IconComponent: FC<SVGProps<SVGSVGElement>>): FC<IIconProps> => {
   const Icon: FC<IIconProps> = (props) => {
     const {
-      className, size = 'M', color = 'text-on-p', ...rest
+      className,
+      size = 'M',
+      color = 'text-on-p',
+      display = 'block',
+      ...rest
     } = props;
 
     const iconSize = getIconSize(size);
@@ -43,7 +50,7 @@ export const createIcon = (IconComponent: FC<SVGProps<SVGSVGElement>>): FC<IIcon
     return (
       <IconComponent
         {...rest}
-        className={cn(styles.icon, className)}
+        className={cn(styles[`display_${display}`], className)}
         {...iconSize}
         {...iconColor}
       />
