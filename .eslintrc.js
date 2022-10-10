@@ -10,6 +10,7 @@ module.exports = {
     'airbnb',
     'plugin:react/jsx-runtime',
     'plugin:storybook/recommended',
+    'plugin:react-hooks/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -48,9 +49,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/src/**/*.test.{ts,tsx}'],
+      files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
       rules: {
         'i18next/no-literal-string': 'off',
+        'max-len': [2, {
+          code: 130,
+          ignoreComments: true,
+        }],
       },
     },
     {

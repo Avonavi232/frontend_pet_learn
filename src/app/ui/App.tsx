@@ -1,6 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
 
-import { ThemeConsumer } from 'shared/config/theme';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { PageLayout } from 'shared/ui/PageLayout';
@@ -13,11 +12,7 @@ export const App: FC = () => (
   <BrowserRouter>
     <ErrorBoundary errorComponent={<PageError />}>
       <ThemeProvider>
-        <ThemeConsumer>
-          {({ theme }) => (
-            <PageLayout theme={theme} main={<Router />} sidebar={<Sidebar />} navbar={<Navbar />} />
-          )}
-        </ThemeConsumer>
+        <PageLayout main={<Router />} sidebar={<Sidebar />} navbar={<Navbar />} />
       </ThemeProvider>
     </ErrorBoundary>
   </BrowserRouter>

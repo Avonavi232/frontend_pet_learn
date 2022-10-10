@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import { EThemes, useTheme } from 'shared/config/theme';
+import { useTheme } from 'shared/config/theme';
 import { ReactComponent as Icon } from 'shared/assets/icons/theme-light.svg';
 import { FC } from 'react';
 import styles from './styles.sass';

@@ -1,5 +1,4 @@
 import { FC, ReactElement } from 'react';
-import { EThemes } from 'shared/config/theme';
 import cn from 'classnames';
 import styles from './styles.sass';
 
@@ -7,13 +6,12 @@ interface IPageLayoutProps {
   main: ReactElement;
   sidebar: ReactElement;
   navbar: ReactElement;
-  theme: EThemes;
 }
 
 export const PageLayout: FC<IPageLayoutProps> = ({
-  main, sidebar, navbar, theme,
+  main, sidebar, navbar,
 }) => (
-  <div className={cn(styles.app, theme)}>
+  <div className={cn(styles.app)}>
     {navbar}
     <div className={styles.content}>
       <aside>

@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof ThemeSwitcher> = () => {
   };
 
   return (
-    <ThemeProvider value={{ theme, toggleTheme }}>
+    <ThemeProvider value={{ theme, toggleTheme, setTheme }}>
       <ThemeSwitcher />
     </ThemeProvider>
   );

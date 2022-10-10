@@ -17,13 +17,24 @@ export const ThemeProvider: React.FC<IThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     set(theme);
-  }, [value, theme]);
+  }, [value, theme, set]);
+
+  useEffect(() => {
+    document.body.classList.add(theme);
+
+    return () => {
+      document.body.classList.remove(theme);
+    };
+  }, [theme]);
 
   const toggleTheme = useCallback(() => {
     setTheme((prevTheme) => (prevTheme === EThemes.Light ? EThemes.Dark : EThemes.Light));
   }, []);
 
-  const context: IThemeContext = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
+  const context: IThemeContext = useMemo(
+    () => ({ theme, toggleTheme, setTheme }),
+    [theme, toggleTheme],
+  );
 
   return (
     <Provider value={context}>
