@@ -1,10 +1,10 @@
 import cn from 'classnames';
-import { EThemes, ThemeConsumer, useTheme } from 'shared/config/theme';
+import { FC, ReactNode, useEffect } from 'react';
+import { EThemes, useTheme } from 'shared/config/theme';
+import { ThemeProvider } from 'app/providers';
 import { TDecorator } from './types';
 import 'app/styles/index.global.sass';
 import styles from './styles.sass';
-import { ThemeProvider } from 'app/providers';
-import { FC, ReactNode, useEffect } from 'react';
 
 const mapThemes: Record<string, EThemes> = {
   dark: EThemes.Dark,

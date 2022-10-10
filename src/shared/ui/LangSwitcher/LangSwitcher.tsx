@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, EButtonTheme } from 'shared/ui/Button';
+import { Button } from 'shared/ui/Button';
 import en from 'shared/assets/icons/united-kingdom.png';
 import ru from 'shared/assets/icons/russia.png';
 import styles from './styles.sass';
@@ -16,11 +16,11 @@ export const LangSwitcher: FC<ILangSwitcherProps> = ({ className }) => {
 
   const toggleLang = useCallback(() => {
     i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
-  }, []);
+  }, [i18n]);
 
   return (
     <div className={cn(className, styles.container)}>
-      <Button theme={EButtonTheme.Clean} onClick={toggleLang}>
+      <Button theme="clean" onClick={toggleLang}>
         <img
           className={styles.icon}
           src={i18n.language === 'ru' ? ru : en}

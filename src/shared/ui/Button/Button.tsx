@@ -3,26 +3,25 @@ import cn from 'classnames';
 import { ButtonHTMLAttributes, FC } from 'react';
 import styles from './styles.sass';
 
-export enum EButtonTheme {
-  Default = 'default',
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Clean = 'clean',
-}
+type TButtonTheme =
+  'default'
+  | 'primary'
+  | 'secondary'
+  | 'clean'
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  theme?: EButtonTheme
+  theme?: TButtonTheme
 }
 
 export const Button: FC<IButtonProps> = (props) => {
   const {
-    className, theme = EButtonTheme.Primary, children, ...rest
+    className, theme = 'primary', children, ...rest
   } = props;
 
   const _className = cn(
     className,
-    theme === EButtonTheme.Clean ? styles.clean : styles.btn,
+    theme === 'clean' ? styles.clean : styles.btn,
     styles[theme],
   );
 
