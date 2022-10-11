@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FC, useState } from 'react';
 import { Button } from 'shared/ui/Button';
 import { ModalWindow } from 'shared/ui/ModalWindow';
+import { Counter } from 'entities/Counter';
 
 const AboutPage: FC = () => {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ const AboutPage: FC = () => {
         repudiandae sequi
         suscipit ullam ut vel. Aut eum in laudantium modi sit?
       </ModalWindow>
+      <Counter />
     </div>
   );
 };

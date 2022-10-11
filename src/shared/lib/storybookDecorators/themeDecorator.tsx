@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { FC, ReactNode, useEffect } from 'react';
 import { EThemes, useTheme } from 'shared/config/theme';
-import { ThemeProvider } from 'app/providers';
+import { ThemeProvider } from 'app/providers/theme';
 import { TDecorator } from './types';
 import 'app/styles/index.global.sass';
 import styles from './styles.sass';

@@ -46,6 +46,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'no-underscore-dangle': 'off',
     'react/jsx-pascal-case': 'off',
+    'no-param-reassign': 'off',
   },
   overrides: [
     {
@@ -64,6 +65,14 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
       },
     },
-
+    {
+      files: ['**/*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
   ],
+  globals: {
+    __IS_DEV__: true,
+  },
 };

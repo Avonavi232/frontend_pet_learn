@@ -6,14 +6,18 @@ import { PageLayout } from 'shared/ui/PageLayout';
 import { FC } from 'react';
 import { ErrorBoundary } from 'shared/ui/ErrorBoundary';
 import { PageError } from 'widgets/PageError/ui';
-import { ThemeProvider, Router } from '../providers';
+import { StoreProvider } from 'app/providers/store';
+import { ThemeProvider } from '../providers/theme';
+import { Router } from '../providers/router';
 
 export const App: FC = () => (
   <BrowserRouter>
     <ErrorBoundary errorComponent={<PageError />}>
-      <ThemeProvider>
-        <PageLayout main={<Router />} sidebar={<Sidebar />} navbar={<Navbar />} />
-      </ThemeProvider>
+      <StoreProvider>
+        <ThemeProvider>
+          <PageLayout main={<Router />} sidebar={<Sidebar />} navbar={<Navbar />} />
+        </ThemeProvider>
+      </StoreProvider>
     </ErrorBoundary>
   </BrowserRouter>
 );
