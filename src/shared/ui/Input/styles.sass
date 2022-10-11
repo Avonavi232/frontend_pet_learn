@@ -1,0 +1,82 @@
+$input-color: var(--color-text-on-s)
+$input-border: var(--border)
+$input-background: #fff
+$input-placeholder: var(--color-text-on-s)
+$input-border-focus: var(--color-secondary-d)
+$group-color: var(--color-primary-l)
+$group-border: var(--color-secondary)
+$group-background: var(--color-secondary)
+$group-color-focus: #fff
+$group-border-focus: var(--color-secondary-d)
+$group-background-focus: var(--color-secondary-d)
+
+
+.form-field
+  display: block
+  width: 100%
+  padding: 8px 16px
+  border-radius: var(--borrad-s)
+  -webkit-appearance: none
+  color: $input-color
+  border: 1px solid $input-border
+  background: $input-background
+  transition: border .3s ease
+  font: var(--font-s)
+
+
+  &::placeholder
+    color: $input-placeholder
+
+  &:focus
+    outline: none
+    border-color: $input-border-focus
+
+
+.form-group
+  position: relative
+  display: flex
+  width: 100%
+  font: var(--font-s)
+
+  .group_name, .form-field
+    white-space: nowrap
+    display: block
+
+  .form-field
+    position: relative
+    z-index: 1
+    flex: 1 1 auto
+    width: 1%
+    margin-top: 0
+    margin-bottom: 0
+    &:first-child
+      border-radius: var(--borrad-m) 0 0 var(--borrad-m)
+    &:last-child
+      border-radius: 0 var(--borrad-m) var(--borrad-m) 0
+    &:only-child
+      border-radius: var(--borrad-m)
+
+  .group_name
+    text-align: center
+    padding: 8px 12px
+    color: $group-color
+    background: $group-background
+    border: 1px solid $group-border
+    transition: background .3s ease, border .3s ease, color .3s ease
+    &:first-child
+      border-radius: var(--borrad-m) 0 0 var(--borrad-m)
+    &:last-child
+      border-radius: 0 var(--borrad-m) var(--borrad-m) 0
+    &:not(:first-child)
+      margin-left: -1px
+
+
+  &:focus-within
+    /* stylelint-disable-next-line */
+    .group_name
+      color: $group-color-focus
+      background: $group-background-focus
+      border-color: $group-border-focus
+
+
+
