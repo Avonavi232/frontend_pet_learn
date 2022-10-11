@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { FC } from 'react';
 import cn from 'classnames';
 import { Button } from 'shared/ui/Button';
