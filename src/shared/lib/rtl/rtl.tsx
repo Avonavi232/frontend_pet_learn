@@ -3,8 +3,9 @@ import { I18nextProvider } from 'react-i18next';
 import * as React from 'react';
 import { queries, Queries } from '@testing-library/dom';
 import { MemoryRouter } from 'react-router-dom';
-import { IAppState, StoreProvider, TPreloadedState } from 'app/providers/store';
+import { createReduxStore, IAppState, TPreloadedState } from 'app/providers/store';
 import { DeepPartial } from 'redux';
+import { Provider } from 'react-redux';
 import i18n from '../../config/i18n/i18n.testEnv';
 
 export * from '@testing-library/react';
@@ -25,15 +26,16 @@ export function render<Q extends Queries = typeof queries,
   options?: TOptions<Q, Container, BaseElement>,
 ) {
   const { route = '/', preloadedState, ...rtlOptions } = options || {};
+  const store = createReduxStore(preloadedState as TPreloadedState);
 
   return rtlRender(
-    <StoreProvider preloadedState={preloadedState as TPreloadedState}>
+    <Provider store={store}>
       <MemoryRouter initialEntries={[route]}>
         <I18nextProvider i18n={i18n}>
           {ui}
         </I18nextProvider>
       </MemoryRouter>
-    </StoreProvider>,
+    </Provider>,
     rtlOptions,
   );
 }

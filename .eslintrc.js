@@ -29,7 +29,7 @@ module.exports = {
       devDependencies: true,
     }],
     'max-len': [2, {
-      code: 100,
+      code: 120,
       ignoreComments: true,
     }],
     'i18next/no-literal-string': ['error', {

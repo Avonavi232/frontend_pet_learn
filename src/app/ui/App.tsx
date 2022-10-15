@@ -1,23 +1,32 @@
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { FC } from 'react';
 
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { PageLayout } from 'shared/ui/PageLayout';
-import { FC } from 'react';
 import { ErrorBoundary } from 'shared/ui/ErrorBoundary';
 import { PageError } from 'widgets/PageError/ui';
-import { StoreProvider } from 'app/providers/store';
+import { TReduxStore } from 'app/providers/store';
 import { ThemeProvider } from '../providers/theme';
 import { Router } from '../providers/router';
 
-export const App: FC = () => (
-  <BrowserRouter>
-    <ErrorBoundary errorComponent={<PageError />}>
-      <StoreProvider>
-        <ThemeProvider>
-          <PageLayout main={<Router />} sidebar={<Sidebar />} navbar={<Navbar />} />
-        </ThemeProvider>
-      </StoreProvider>
-    </ErrorBoundary>
-  </BrowserRouter>
-);
+export interface IAppProps {
+  reduxStore: TReduxStore
+}
+
+export const App: FC<IAppProps> = (props) => {
+  const { reduxStore } = props;
+
+  return (
+    <BrowserRouter>
+      <ErrorBoundary errorComponent={<PageError />}>
+        <Provider store={reduxStore}>
+          <ThemeProvider>
+            <PageLayout main={<Router />} sidebar={<Sidebar />} navbar={<Navbar />} />
+          </ThemeProvider>
+        </Provider>
+      </ErrorBoundary>
+    </BrowserRouter>
+  );
+};

@@ -1,14 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { IUserState } from './types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IUser, IUserState } from './types';
 
 const initialState: IUserState = {
-  user: undefined,
+  user: null,
 };
 
 const slice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setUserData: (state, action: PayloadAction<IUser>) => {
+      state.user = action.payload;
+    },
+    clearUserData: (state) => {
+      state.user = null;
+    },
+  },
 });
 
 export const { actions: userActions, reducer: userReducer } = slice;

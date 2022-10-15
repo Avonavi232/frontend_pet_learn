@@ -7,16 +7,17 @@ export default {
   component: Button,
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = () => (
+  <div
+    style={{
+      display: 'inline-flex', flexDirection: 'column', gap: 16, justifyContent: 'flex-start',
+    }}
+  >
+    <Button theme="primary">Hello</Button>
+    <Button theme="secondary">Hello</Button>
+    <Button theme="primary" size="S">Hello</Button>
+    <Button theme="secondary" size="S">Hello</Button>
+  </div>
+);
 
 export const Primary = Template.bind({});
-Primary.args = {
-  theme: 'primary',
-  children: 'hello',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  theme: 'secondary',
-  children: 'hello',
-};

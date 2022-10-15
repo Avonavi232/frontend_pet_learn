@@ -1,6 +1,8 @@
 {
+  "My great app": "My great app",
   "Try": "Попробуйте",
   "login": "Войти",
+  "logout": "Выйти",
   "page": "страницу",
   "reload": "перезагрузить",
   "selected_lang": "Русский",

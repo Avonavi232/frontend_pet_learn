@@ -18,24 +18,34 @@ $secondary-text: var(--color-text-on-p)
   &:hover, &:focus
     background-color: $secondary-bg2
 
+.size_S
+  font: var(--font-s)
+  height: 24px
+  padding: 0 12px
+
+.size_M
+  padding: 0 16px
+  font: var(--font-m)
+  height: 36px
+
 .btn
   cursor: pointer
   position: relative
-  display: block
-  padding: 0
   overflow: hidden
   border-width: 0
   outline: none
   border-radius: 2px
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6)
   transition: background-color .3s
+  display: inline-flex
+  align-items: center
+  justify-content: center
 
 .btn > *
   position: relative
 
 .btn .inner
   display: block
-  padding: 12px 24px
 
 .btn:before
   content: ""

@@ -4,24 +4,25 @@ import type {
 } from 'react';
 import cn from 'classnames';
 
-import { TIconSize, TColors } from 'shared/ui/theme/types';
+import { TStandardSize, TColors } from 'shared/ui/theme/types';
 import styles from './styles.sass';
 
 export interface IIconProps extends ComponentPropsWithRef<'svg'> {
   className?: string;
-  size?: TIconSize;
+  size?: TStandardSize;
   color?: TColors
   display?: CSSProperties['display']
 }
 
-const mapIconSize: Record<TIconSize, number> = {
+const mapIconSize: Record<TStandardSize, number> = {
+  XS: 8,
   S: 12,
   M: 16,
   L: 24,
   XL: 32,
 };
 
-const getIconSize = (size: TIconSize): SVGProps<SVGSVGElement> => {
+const getIconSize = (size: TStandardSize): SVGProps<SVGSVGElement> => {
   const sizeValue = mapIconSize[size];
 
   return {

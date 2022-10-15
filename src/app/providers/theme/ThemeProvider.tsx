@@ -4,8 +4,9 @@ import {
 } from 'react';
 import { localStorageService } from 'shared/lib/localStorageService';
 import {
-  ThemeProvider as Provider, IThemeContext, EThemes, THEME_LS_KEY,
+  ThemeProvider as Provider, IThemeContext, EThemes,
 } from 'shared/config/theme';
+import { THEME_LS_KEY } from 'shared/const';
 
 export interface IThemeProviderProps {
   children: React.ReactElement;

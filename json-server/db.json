@@ -5,5 +5,13 @@
       "body": "some comment,",
       "postId":1
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Alex",
+      "password": "1234",
+      "avatar": "https://github.com/Avonavi232.png/?size=64"
+    }
   ]
 }

@@ -1,3 +1,3 @@
 import type { IAppState } from 'app/providers/store';
 
-export const selectCounterValue = (state: IAppState) => state.counter.value;
+export const selectUser = (state: IAppState) => state.user.user;

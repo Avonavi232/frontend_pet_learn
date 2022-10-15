@@ -7,9 +7,13 @@ export type TColors =
   | 'secondary-l'
   | 'text-on-p'
   | 'text-on-s'
+  | 'text-on-d'
+  | 'error'
+  | 'success'
 
-export type TIconSize =
-  'S'
-| 'M'
-| 'L'
-| 'XL'
+export type TStandardSize =
+  'XS'
+  | 'S'
+  | 'M'
+  | 'L'
+  | 'XL'
