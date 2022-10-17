@@ -1,5 +1,4 @@
 import webpack from 'webpack';
-import path from 'path';
 import { getResolvers } from './getResolvers';
 import { getLoaders } from './getLoaders';
 import { getPlugins } from './getPlugins';

@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { FC } from 'react';
@@ -15,7 +16,7 @@ export interface IAppProps {
   reduxStore: TReduxStore
 }
 
-export const App: FC<IAppProps> = (props) => {
+const App: FC<IAppProps> = (props) => {
   const { reduxStore } = props;
 
   return (
@@ -30,3 +31,5 @@ export const App: FC<IAppProps> = (props) => {
     </BrowserRouter>
   );
 };
+
+export default hot(App);

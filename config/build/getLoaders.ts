@@ -1,5 +1,4 @@
 import { RuleSetRule } from 'webpack';
-import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 import { BuildOptions } from './types';
 import { getStylesLoader } from './getStylesLoader';
@@ -18,8 +17,6 @@ export const svgLoader: RuleSetRule = {
 };
 
 export function getLoaders(options: BuildOptions): RuleSetRule[] {
-  const { isDev } = options;
-
   const fileLoader: RuleSetRule = {
     test: /\.(png|jpe?g|gif)$/i,
     use: [
@@ -36,9 +33,7 @@ export function getLoaders(options: BuildOptions): RuleSetRule[] {
       {
         loader: require.resolve('ts-loader'),
         options: {
-          getCustomTransformers: () => ({
-            before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-          }),
+          transpileOnly: true,
         },
       },
     ],
@@ -48,6 +43,9 @@ export function getLoaders(options: BuildOptions): RuleSetRule[] {
     test: /\.tsx?$/,
     exclude: /node_modules/,
     loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
+    },
   };
 
   const stylesLoader = getStylesLoader(options);

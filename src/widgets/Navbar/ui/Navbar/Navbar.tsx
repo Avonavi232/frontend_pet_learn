@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { Suspense, useCallback } from 'react';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -6,8 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { Text } from 'shared/ui/Text';
 import { selectUser } from 'entities/User/model/selectors';
-import { AuthModal, authModalActions } from 'features/AuthByUsername';
-import { useCallback } from 'react';
+import { AuthModalAsync, getAuthModalActions } from 'features/AuthByUsername';
 import { UserAvatar } from 'shared/ui/UserAvatar';
 import styles from './styles.sass';
 import { Login } from '../Login/Login';
@@ -22,7 +22,8 @@ export const Navbar: FC<INavbarProps> = ({ className }) => {
   const currentUser = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  const setAuthModalOpened = useCallback(() => {
+  const setAuthModalOpened = useCallback(async () => {
+    const { authModalActions } = await getAuthModalActions();
     dispatch(authModalActions.setModalOpened(true));
   }, [dispatch]);
 
@@ -39,7 +40,9 @@ export const Navbar: FC<INavbarProps> = ({ className }) => {
           {currentUser ? <Logout /> : <Login setAuthModalOpened={setAuthModalOpened} />}
         </div>
       </div>
-      <AuthModal />
+      <Suspense>
+        <AuthModalAsync />
+      </Suspense>
     </>
   );
 };

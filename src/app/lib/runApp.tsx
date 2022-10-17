@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { preloadState } from 'app/services/preloadState';
 import { createReduxStore } from 'app/providers/store';
-import { App } from '../ui/App';
+import App from '../ui/App';
 import '../styles/index.global.sass';
 
 export async function runApp() {

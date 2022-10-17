@@ -43,3 +43,5 @@ const slice = createSlice({
 });
 
 export const { actions: authModalActions, reducer: authModalReducer } = slice;
+
+export default { authModalActions };

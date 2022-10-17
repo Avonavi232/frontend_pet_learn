@@ -19,6 +19,7 @@ module.exports = (api) => {
       ],
     ].filter(Boolean),
     plugins: [
+      'react-hot-loader/babel',
       [
         'i18next-extract',
         {

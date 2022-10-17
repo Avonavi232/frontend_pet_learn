@@ -16,5 +16,6 @@ export const getWebpackDevServer = (options: BuildOptions): DevServerConfig => {
     },
     historyApiFallback: true,
     hot: options.hot,
+    liveReload: false,
   };
 };

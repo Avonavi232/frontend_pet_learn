@@ -1,3 +1,2 @@
-export {
-  ITextProps, Text,
-} from './Text';
+export { Text } from './Text';
+export type { ITextProps } from './Text';

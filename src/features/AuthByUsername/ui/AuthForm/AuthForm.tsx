@@ -1,6 +1,6 @@
-import type { FC, FormEvent } from 'react';
+import type { FormEvent } from 'react';
 import cn from 'classnames';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,11 +18,11 @@ import {
 } from '../../model/selectors';
 import styles from './styles.sass';
 
-interface IAuthFormProps {
+export interface IAuthFormProps {
   className?: string;
 }
 
-export const AuthForm: FC<IAuthFormProps> = ({ className }) => {
+export const AuthForm = memo<IAuthFormProps>(({ className }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<TDispatch>();
   const username = useSelector(selectUsername);
@@ -40,7 +40,7 @@ export const AuthForm: FC<IAuthFormProps> = ({ className }) => {
 
   const onSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(loginByUsername({ username, password }));
+    dispatch(loginByUsername({ username: username as string, password: password as string }));
   }, [dispatch, password, username]);
 
   return (
@@ -52,4 +52,4 @@ export const AuthForm: FC<IAuthFormProps> = ({ className }) => {
       <Button type="submit" disabled={isLoading} loading={isLoading}>{t('login')}</Button>
     </form>
   );
-};
+});

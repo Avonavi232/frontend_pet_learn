@@ -1,3 +1,4 @@
-export { AuthModal } from './ui/AuthModal/AuthModal';
-export { authModalReducer, authModalActions } from './model/slice';
-export { IAuthFormState } from './model/types';
+export { AuthModalAsync } from './ui/AuthModal/AuthModal.async';
+export type { IAuthFormState } from './model/types';
+
+export const getAuthModalActions = () => import('./model/slice');
