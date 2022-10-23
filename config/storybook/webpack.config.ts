@@ -5,7 +5,7 @@ import { getLoaders } from './getLoaders';
 import { getResolvers } from './getResolvers';
 
 export default ({ config }: {config: Configuration}) => {
-  const buildOptions = getBuildOptions({ mode: 'development', port: NaN });
+  const buildOptions = getBuildOptions({ mode: 'development', port: NaN, apiUrl: '' });
 
   if (config.resolve) {
     config.resolve = {

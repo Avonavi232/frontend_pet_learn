@@ -41,7 +41,6 @@
     "@storybook/testing-library": "^0.0.13",
     "@svgr/webpack": "^6.3.1",
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
-    "@testing-library/dom": "^8.18.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/react-hooks": "^8.0.1",
@@ -107,6 +106,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
+    "@testing-library/dom": "^8.19.0",
     "axios": "^1.1.2",
     "classnames": "^2.3.2",
     "i18next": "^21.9.2",

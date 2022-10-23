@@ -1,7 +1,8 @@
-import type { FC, ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import cn from 'classnames';
 
 import { useSidebarCtx } from 'shared/ui/Sidebar/lib/context';
+import { memo } from 'react';
 import styles from './styles.sass';
 
 interface ISidebarItemProps {
@@ -10,7 +11,7 @@ interface ISidebarItemProps {
   text: ReactElement | string;
 }
 
-export const SidebarItem: FC<ISidebarItemProps> = ({ className, icon, text }) => {
+export const SidebarItem = memo<ISidebarItemProps>(({ className, icon, text }) => {
   const { isOpened } = useSidebarCtx();
   return (
     <div className={cn(styles.item, className, { [styles.sidebar_opened]: isOpened })}>
@@ -18,4 +19,4 @@ export const SidebarItem: FC<ISidebarItemProps> = ({ className, icon, text }) =>
       <div className={styles.item_text}>{text}</div>
     </div>
   );
-};
+});

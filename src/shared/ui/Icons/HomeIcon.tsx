@@ -1,5 +1,5 @@
 /* eslint-disable max-len,react/jsx-props-no-spreading */
-import { FC, SVGProps } from 'react';
+import { FC, memo, SVGProps } from 'react';
 import { createIcon } from 'shared/ui/Icons/createIcon';
 
 const Icon: FC<SVGProps<SVGSVGElement>> = (props) => (
@@ -14,4 +14,4 @@ const Icon: FC<SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-export const HomeIcon = createIcon(Icon);
+export const HomeIcon = memo(createIcon(Icon));

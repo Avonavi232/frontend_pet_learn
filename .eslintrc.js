@@ -5,8 +5,9 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'plugin:react/recommended',
+    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
     'airbnb',
     'plugin:react/jsx-runtime',
     'plugin:storybook/recommended',
@@ -47,6 +48,8 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'react/jsx-pascal-case': 'off',
     'no-param-reassign': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'error',
   },
   overrides: [
     {
@@ -74,5 +77,6 @@ module.exports = {
   ],
   globals: {
     __IS_DEV__: true,
+    __API__: true,
   },
 };

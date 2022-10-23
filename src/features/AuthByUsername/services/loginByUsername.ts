@@ -1,18 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { IUser, userActions } from 'entities/User';
 import { userLsService } from 'entities/User/model/lsService';
+import { IThunkConfig } from 'app/providers/store';
 
 interface IAuthDTO {
   username: string;
   password: string;
 }
 
-export const loginByUsername = createAsyncThunk<IUser, IAuthDTO, {rejectValue: string}>(
+export const loginByUsername = createAsyncThunk<IUser, IAuthDTO, IThunkConfig<string>>(
   'login/loginByUsername',
-  async (authDTO, thunkAPI) => {
+  async (authDTO, { dispatch, rejectWithValue, extra: { httpApi } }) => {
     try {
-      const response = await axios.post<IUser>('http://localhost:8000/login', authDTO);
+      const response = await httpApi.post<IUser>('/login', authDTO);
 
       if (!response.data) {
         throw new Error('no data');
@@ -24,7 +25,7 @@ export const loginByUsername = createAsyncThunk<IUser, IAuthDTO, {rejectValue: s
         avatar: response.data.avatar,
       };
 
-      thunkAPI.dispatch(userActions.setUserData(user));
+      dispatch(userActions.setUserData(user));
 
       userLsService.set(user);
 
@@ -32,7 +33,7 @@ export const loginByUsername = createAsyncThunk<IUser, IAuthDTO, {rejectValue: s
     } catch (e) {
       const status = (e as AxiosError<any>).response?.data?.message;
 
-      return thunkAPI.rejectWithValue(status || (e as Error).message);
+      return rejectWithValue(status || (e as Error).message);
     }
   },
 );

@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { FC, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from 'shared/ui/Button';
@@ -11,7 +11,7 @@ interface ILangSwitcherProps {
   className?: string;
 }
 
-export const LangSwitcher: FC<ILangSwitcherProps> = ({ className }) => {
+export const LangSwitcher = memo<ILangSwitcherProps>(({ className }) => {
   const { t, i18n } = useTranslation();
 
   const toggleLang = useCallback(() => {
@@ -29,4 +29,4 @@ export const LangSwitcher: FC<ILangSwitcherProps> = ({ className }) => {
       </Button>
     </div>
   );
-};
+});

@@ -1,19 +1,23 @@
-import { Dispatch } from 'react';
-import type { Action, EnhancedStore, ThunkDispatch } from '@reduxjs/toolkit';
+import type { Action, EnhancedStore } from '@reduxjs/toolkit';
 import type {
   CombinedState, PreloadedState, ReducersMapObject, Reducer,
 } from 'redux';
 import type { NoInfer } from '@reduxjs/toolkit/src/tsHelpers';
+import { MiddlewareArray } from '@reduxjs/toolkit';
+import { ThunkMiddlewareFor } from '@reduxjs/toolkit/src/getDefaultMiddleware';
+import { ExcludeFromTuple } from '@reduxjs/toolkit/dist/tsHelpers';
 
 import type { ICounterState } from 'entities/Counter';
 import type { IUserState } from 'entities/User';
 import { IAuthFormModalState } from 'features/AuthByUsername/model/types';
-import { ThunkMiddlewareFor } from '@reduxjs/toolkit/src/getDefaultMiddleware';
+import { IProfileState } from 'entities/Profile/model/types';
+import { THttpApi } from 'shared/lib/api/types';
 
 export type IAppState = {
   counter: ICounterState
   user: IUserState
   login?: IAuthFormModalState
+  profile?: IProfileState
 }
 
 export type TReduxActions = Action
@@ -28,8 +32,20 @@ export interface IReducerManager {
   remove: (key: keyof TReducersMapObj) => void;
 }
 
-export type TReduxStore = EnhancedStore<IAppState, TReduxActions, [ThunkMiddlewareFor<IAppState>]> & {
+// eslint-disable-next-line max-len
+export type TMiddlewares = MiddlewareArray<ExcludeFromTuple<[ ThunkMiddlewareFor<IAppState, { thunk: { extraArgument: IThunkExtra } }> ], never>>
+
+export type TReduxStore = EnhancedStore<IAppState, TReduxActions, TMiddlewares> & {
   reducerManager: IReducerManager
 }
 
-export type TDispatch = ThunkDispatch<IAppState, undefined, TReduxActions> & Dispatch<TReduxActions>
+export type TDispatch = TReduxStore['dispatch']
+
+export interface IThunkExtra {
+  httpApi: THttpApi;
+}
+
+export interface IThunkConfig<T> {
+  rejectValue: T;
+  extra: IThunkExtra
+}

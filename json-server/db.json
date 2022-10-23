@@ -13,5 +13,15 @@
       "password": "1234",
       "avatar": "https://github.com/Avonavi232.png/?size=64"
     }
-  ]
+  ],
+  "profile": {
+    "firstname": "Alex",
+    "lastname": "Ivanov",
+    "age": 28,
+    "currency": "RUB",
+    "country": "Georgia",
+    "city": "Batumi",
+    "username": "Admin",
+    "avatar": "https://github.com/Avonavi232.png/?size=256"
+  }
 }

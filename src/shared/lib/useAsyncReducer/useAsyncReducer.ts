@@ -5,7 +5,7 @@ import { useReducerManager } from 'shared/lib/useReducerManager';
 import { TReducersMapObj } from 'app/providers/store';
 import { Reducer } from 'redux';
 
-type TReducersMap = Partial<Record<keyof TReducersMapObj, Reducer>>
+export type TReducersMap = Partial<Record<keyof TReducersMapObj, Reducer>>
 type TReducersMapObjEntry = [keyof TReducersMapObj, Reducer];
 
 export const useAsyncReducer = (reducers: TReducersMap) => {

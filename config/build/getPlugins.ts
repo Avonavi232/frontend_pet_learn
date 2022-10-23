@@ -6,7 +6,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { BuildOptions } from './types';
 
-export function getPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstance[] {
+export function getPlugins({ paths, isDev, apiUrl }: BuildOptions): WebpackPluginInstance[] {
   const isAnalyze = Boolean(process.env.analyze);
 
   return [
@@ -19,7 +19,8 @@ export function getPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstanc
       chunkFilename: 'css/[name].[contenthash:8].css',
     }),
     new webpack.DefinePlugin({
-      __IS_DEV__: isDev,
+      __IS_DEV__: JSON.stringify(isDev),
+      __API__: JSON.stringify(apiUrl),
     }),
     new ForkTsCheckerWebpackPlugin(),
     isAnalyze && new BundleAnalyzerPlugin(),

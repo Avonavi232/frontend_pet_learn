@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { FC } from 'react';
 
 interface ILoginProps {
-  setAuthModalOpened(): void
+  onLoginClick(): void
 }
 
-export const Login: FC<ILoginProps> = ({ setAuthModalOpened }) => {
+export const Login: FC<ILoginProps> = ({ onLoginClick }) => {
   const { t } = useTranslation();
 
   return (
-    <Button color="text-on-d" theme="clean" onClick={setAuthModalOpened}>{t('login')}</Button>
+    <Button color="text-on-d" theme="clean" onClick={onLoginClick}>{t('login')}</Button>
   );
 };

@@ -1,7 +1,7 @@
 import cn from 'classnames';
 
 import {
-  FC, ReactElement, useCallback, useState,
+  FC, ReactElement, useCallback, useMemo, useState,
 } from 'react';
 import { ChevronIcon } from 'shared/ui/Icons';
 import { Provider } from '../../lib/context';
@@ -21,8 +21,10 @@ export const Sidebar: FC<ISidebarProps> = ({
 
   const onToggle = useCallback(() => setOpen((p) => !p), []);
 
+  const sidebarContext = useMemo(() => ({ isOpened }), [isOpened]);
+
   return (
-    <Provider value={{ isOpened }}>
+    <Provider value={sidebarContext}>
       <div className={cn(className, styles.container, { [styles.open]: isOpened })}>
         <div className={styles.items}>
           {top}

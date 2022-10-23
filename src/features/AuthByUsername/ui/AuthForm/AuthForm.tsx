@@ -2,12 +2,12 @@ import type { FormEvent } from 'react';
 import cn from 'classnames';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
-import { TDispatch } from 'app/providers/store';
 import { Text } from 'shared/ui/Text';
+import { useAppDispatch } from 'shared/lib/useAppDispatch';
 import { loginByUsername } from '../../services/loginByUsername';
 import { authModalActions } from '../../model/slice';
 import {
@@ -24,7 +24,7 @@ export interface IAuthFormProps {
 
 export const AuthForm = memo<IAuthFormProps>(({ className }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch<TDispatch>();
+  const dispatch = useAppDispatch();
   const username = useSelector(selectUsername);
   const password = useSelector(selectPassword);
   const isLoading = useSelector(selectIsLoading);
@@ -38,9 +38,9 @@ export const AuthForm = memo<IAuthFormProps>(({ className }) => {
     dispatch(authModalActions.setPassword(value));
   }, [dispatch]);
 
-  const onSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(loginByUsername({ username: username as string, password: password as string }));
+    await dispatch(loginByUsername({ username: username as string, password: password as string }));
   }, [dispatch, password, username]);
 
   return (

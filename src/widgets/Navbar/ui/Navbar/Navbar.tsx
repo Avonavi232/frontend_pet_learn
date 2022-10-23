@@ -37,7 +37,7 @@ export const Navbar: FC<INavbarProps> = ({ className }) => {
           {currentUser && (
             <UserAvatar url={currentUser.avatar} alt={currentUser.username} title={currentUser.username} />
           )}
-          {currentUser ? <Logout /> : <Login setAuthModalOpened={setAuthModalOpened} />}
+          {currentUser ? <Logout /> : <Login onLoginClick={setAuthModalOpened} />}
         </div>
       </div>
       <Suspense>

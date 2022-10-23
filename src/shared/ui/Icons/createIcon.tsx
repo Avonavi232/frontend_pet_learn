@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { memo } from 'react';
 import type {
   ComponentPropsWithRef, CSSProperties, FC, SVGProps,
 } from 'react';
@@ -35,28 +36,24 @@ const getIconColor = (color: TColors): SVGProps<SVGSVGElement> => ({
   fill: `var(--color-${color})`,
 });
 
-export const createIcon = (IconComponent: FC<SVGProps<SVGSVGElement>>): FC<IIconProps> => {
-  const Icon: FC<IIconProps> = (props) => {
-    const {
-      className,
-      size = 'M',
-      color = 'text-on-p',
-      display = 'block',
-      ...rest
-    } = props;
+export const createIcon = (IconComponent: FC<SVGProps<SVGSVGElement>>): FC<IIconProps> => memo<IIconProps>((props) => {
+  const {
+    className,
+    size = 'M',
+    color = 'text-on-p',
+    display = 'block',
+    ...rest
+  } = props;
 
-    const iconSize = getIconSize(size);
-    const iconColor = getIconColor(color);
+  const iconSize = getIconSize(size);
+  const iconColor = getIconColor(color);
 
-    return (
-      <IconComponent
-        {...rest}
-        className={cn(styles[`display_${display}`], className)}
-        {...iconSize}
-        {...iconColor}
-      />
-    );
-  };
-
-  return Icon;
-};
+  return (
+    <IconComponent
+      {...rest}
+      className={cn(styles[`display_${display}`], className)}
+      {...iconSize}
+      {...iconColor}
+    />
+  );
+});

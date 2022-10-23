@@ -1,14 +1,21 @@
 import { FC } from 'react';
 import { LangSwitcher } from 'shared/ui/LangSwitcher';
-import { AppLink } from 'shared/ui/AppLink';
-import { InfoIcon, HomeIcon } from 'shared/ui/Icons';
-import { Sidebar as SidebarUI, SidebarItem } from 'shared/ui/Sidebar';
+import { InfoIcon, HomeIcon, ProfileIcon } from 'shared/ui/Icons';
+import { Sidebar as SidebarUI, SidebarItem, SidebarLinkItem } from 'shared/ui/Sidebar';
 import { EAppRoutes } from 'app/providers/router';
 import { useTranslation } from 'react-i18next';
 
 interface ISidebarProps {
   className?: string;
 }
+
+const icons = {
+  [EAppRoutes.Main]: <HomeIcon size="XL" />,
+  [EAppRoutes.About]: <InfoIcon size="XL" />,
+  [EAppRoutes.Profile]: <ProfileIcon size="XL" />,
+};
+
+const langSwitcher = <LangSwitcher />;
 
 export const Sidebar: FC<ISidebarProps> = () => {
   const { t } = useTranslation();
@@ -17,23 +24,26 @@ export const Sidebar: FC<ISidebarProps> = () => {
     <SidebarUI
       top={(
         <>
-          <AppLink to={EAppRoutes.Main}>
-            <SidebarItem
-              icon={<HomeIcon size="XL" />}
-              text={t('Главная')}
-            />
-          </AppLink>
-          <AppLink to={EAppRoutes.About}>
-            <SidebarItem
-              icon={<InfoIcon size="XL" />}
-              text={t('О сайте')}
-            />
-          </AppLink>
+          <SidebarLinkItem
+            to={EAppRoutes.Main}
+            icon={icons[EAppRoutes.Main]}
+            text={t('Главная')}
+          />
+          <SidebarLinkItem
+            to={EAppRoutes.About}
+            icon={icons[EAppRoutes.About]}
+            text={t('О сайте')}
+          />
+          <SidebarLinkItem
+            to={EAppRoutes.Profile}
+            icon={icons[EAppRoutes.Profile]}
+            text={t('profile_sidebar_item')}
+          />
         </>
       )}
       bottom={(
         <SidebarItem
-          icon={<LangSwitcher />}
+          icon={langSwitcher}
           text={t('selected_lang')}
         />
       )}
