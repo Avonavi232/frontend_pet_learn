@@ -3,7 +3,7 @@
     {
       "id": 1,
       "body": "some comment,",
-      "postId":1
+      "postId": 1
     }
   ],
   "users": [
@@ -15,11 +15,11 @@
     }
   ],
   "profile": {
-    "firstname": "Alex",
-    "lastname": "Ivanov",
+    "firstname": "Alex1",
+    "lastname": "Ivanov2",
     "age": 28,
-    "currency": "RUB",
-    "country": "Georgia",
+    "currency": "USD",
+    "country": "Belarus",
     "city": "Batumi",
     "username": "Admin",
     "avatar": "https://github.com/Avonavi232.png/?size=256"

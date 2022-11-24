@@ -37,7 +37,7 @@ module.exports = {
       mode: 'jsx-text-only',
     }],
     '@typescript-eslint/no-shadow': 'error',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'no-shadow': 'off',
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
@@ -50,6 +50,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
   },
   overrides: [
     {

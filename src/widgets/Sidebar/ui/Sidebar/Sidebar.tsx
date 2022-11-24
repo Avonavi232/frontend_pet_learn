@@ -4,6 +4,8 @@ import { InfoIcon, HomeIcon, ProfileIcon } from 'shared/ui/Icons';
 import { Sidebar as SidebarUI, SidebarItem, SidebarLinkItem } from 'shared/ui/Sidebar';
 import { EAppRoutes } from 'app/providers/router';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'entities/User/model/selectors';
 
 interface ISidebarProps {
   className?: string;
@@ -19,6 +21,7 @@ const langSwitcher = <LangSwitcher />;
 
 export const Sidebar: FC<ISidebarProps> = () => {
   const { t } = useTranslation();
+  const auth = useSelector(selectUser);
 
   return (
     <SidebarUI
@@ -34,11 +37,15 @@ export const Sidebar: FC<ISidebarProps> = () => {
             icon={icons[EAppRoutes.About]}
             text={t('О сайте')}
           />
-          <SidebarLinkItem
-            to={EAppRoutes.Profile}
-            icon={icons[EAppRoutes.Profile]}
-            text={t('profile_sidebar_item')}
-          />
+          {
+            auth && (
+              <SidebarLinkItem
+                to={EAppRoutes.Profile}
+                icon={icons[EAppRoutes.Profile]}
+                text={t('profile_sidebar_item')}
+              />
+            )
+          }
         </>
       )}
       bottom={(

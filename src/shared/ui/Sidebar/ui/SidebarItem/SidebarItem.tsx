@@ -11,8 +11,11 @@ interface ISidebarItemProps {
   text: ReactElement | string;
 }
 
-export const SidebarItem = memo<ISidebarItemProps>(({ className, icon, text }) => {
+export const SidebarItem = memo<ISidebarItemProps>(({
+  className, icon, text,
+}) => {
   const { isOpened } = useSidebarCtx();
+
   return (
     <div className={cn(styles.item, className, { [styles.sidebar_opened]: isOpened })}>
       <div className={styles.icon}>{icon}</div>

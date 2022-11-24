@@ -1,41 +1,45 @@
-import type {
-  ChangeEvent, FC, InputHTMLAttributes, ReactNode,
-} from 'react';
+import type { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
 import cn from 'classnames';
 
-import { memo, useCallback } from 'react';
+import {
+  forwardRef, memo, useCallback, useMemo,
+} from 'react';
 import styles from './styles.sass';
 
-type TInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
+/* eslint-disable react/no-unused-prop-types */
+export type TInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'readOnly'> & {
   className?: string;
-  value?: string;
+  value?: string | number;
   onChange?(value: string): void;
   rightAdornment?: ReactNode
   leftAdornment?: ReactNode
+  readonly?: boolean
 }
+/* eslint-enable react/no-unused-prop-types */
 
-export const Input: FC<TInputProps> = memo((props) => {
+export const Input = memo(forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
   const {
-    className, value, onChange, rightAdornment, leftAdornment, autoFocus, placeholder, type,
+    className, rightAdornment, leftAdornment, onChange, readonly, ...inputProps
   } = props;
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   }, [onChange]);
 
+  const wrapperCss = useMemo(() => cn(styles['form-group'], { [styles.readonly]: readonly }), [readonly]);
+
   return (
-    <div className={styles['form-group']}>
+    <div className={wrapperCss}>
       {leftAdornment && <span className={styles.group_name}>{leftAdornment}</span>}
       <input
-        placeholder={placeholder}
-        className={cn(className, styles['form-field'])}
+        ref={ref}
+        /* eslint-disable-next-line react/jsx-props-no-spreading */
+        {...inputProps}
         onChange={handleChange}
-        value={value}
-        /* eslint-disable-next-line jsx-a11y/no-autofocus */
-        autoFocus={autoFocus}
-        type={type}
+        className={cn(className, styles['form-field'])}
+        readOnly={readonly}
       />
       {rightAdornment && <span className={styles.group_name}>{rightAdornment}</span>}
     </div>
   );
-});
+}));

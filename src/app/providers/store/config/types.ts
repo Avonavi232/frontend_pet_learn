@@ -10,7 +10,7 @@ import { ExcludeFromTuple } from '@reduxjs/toolkit/dist/tsHelpers';
 import type { ICounterState } from 'entities/Counter';
 import type { IUserState } from 'entities/User';
 import { IAuthFormModalState } from 'features/AuthByUsername/model/types';
-import { IProfileState } from 'entities/Profile/model/types';
+import { IProfileState } from 'entities/Profile';
 import { THttpApi } from 'shared/lib/api/types';
 
 export type IAppState = {
@@ -48,4 +48,5 @@ export interface IThunkExtra {
 export interface IThunkConfig<T> {
   rejectValue: T;
   extra: IThunkExtra
+  state: IAppState
 }

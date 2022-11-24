@@ -38,7 +38,7 @@ export class TestThunk<Return, Arg, RejectedValue> {
 }
 
 type ActionCreatorType<Return, Arg, RejectedValue> =
-  AsyncThunk<Return, Arg, { rejectValue: RejectedValue, extra: IThunkExtra }>
+  AsyncThunk<Return, Arg, { rejectValue: RejectedValue, extra: IThunkExtra, state: IAppState }>
 
 type THttpMethods =
   | 'get'

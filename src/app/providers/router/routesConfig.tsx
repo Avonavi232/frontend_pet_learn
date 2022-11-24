@@ -4,6 +4,10 @@ import { AboutPageLazy } from 'pages/aboutPage';
 import { NotFoundPage } from 'pages/notFoundPage';
 import { ProfilePageLazy } from 'pages/profilePage';
 
+interface AppRouteProps extends PathRouteProps{
+  private?: boolean;
+}
+
 export enum EAppRoutes {
   Main = '/',
   About = '/about',
@@ -11,7 +15,7 @@ export enum EAppRoutes {
   NotFound = '*'
 }
 
-export const routeConfig: PathRouteProps[] = [
+export const routeConfig: AppRouteProps[] = [
   {
     path: EAppRoutes.Main,
     element: <MainPageLazy />,
@@ -23,6 +27,7 @@ export const routeConfig: PathRouteProps[] = [
   {
     path: EAppRoutes.Profile,
     element: <ProfilePageLazy />,
+    private: true,
   },
   {
     path: EAppRoutes.NotFound,

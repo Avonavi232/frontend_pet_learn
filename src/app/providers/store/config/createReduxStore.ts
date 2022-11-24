@@ -5,7 +5,7 @@ import { userReducer } from 'entities/User';
 import { createReducerManager } from 'app/providers/store/config/reducerManager';
 import { getHttpApi } from 'shared/lib/api';
 import {
-  IAppState, TReducersMapObj, TPreloadedState, TReduxActions, TReduxStore, TMiddlewares,
+  IAppState, TReducersMapObj, TPreloadedState, TReduxActions, TReduxStore, TMiddlewares, IThunkExtra,
 } from './types';
 
 const staticReducersMap: TReducersMapObj = {
@@ -20,12 +20,14 @@ export const createReduxStore = (
 ): TReduxStore => {
   const httpApi = getHttpApi();
 
+  const thunkExtraArg: IThunkExtra = { httpApi };
+
   const reduxStore = configureStore<IAppState, TReduxActions, TMiddlewares>({
     reducer: reducerManager.reduce,
     devTools: __IS_DEV__,
     preloadedState,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-      thunk: { extraArgument: { httpApi } },
+      thunk: { extraArgument: thunkExtraArg },
     }),
   });
 

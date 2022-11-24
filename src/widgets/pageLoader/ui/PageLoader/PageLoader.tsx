@@ -10,6 +10,6 @@ interface IPageLoaderProps {
 
 export const PageLoader: FC<IPageLoaderProps> = ({ className }) => (
   <div className={cn(className, styles.container)}>
-    <Spinner />
+    <Spinner size={64} />
   </div>
 );

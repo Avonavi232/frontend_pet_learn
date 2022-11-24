@@ -9,11 +9,12 @@ export interface ITextProps {
   children: ReactNode;
   color?: TColors
   size?: TStandardSize
+  align?: 'center'
 }
 
 export const Text: FC<ITextProps> = (props) => {
   const {
-    className, children, color = 'text-on-p', size = 'M',
+    className, children, color = 'text-on-p', size = 'M', align,
   } = props;
 
   const css = cn(
@@ -22,6 +23,7 @@ export const Text: FC<ITextProps> = (props) => {
     `fontSize_${size}`,
     `lineHeight_${size}`,
     `color_${color}`,
+    `textAlign_${align}`,
   );
 
   return (
